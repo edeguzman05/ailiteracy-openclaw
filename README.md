@@ -19,6 +19,77 @@ This setup is "Local-First," meaning each student's agent runs on their own mach
 
 ---
 
+## 🎮 Discord Server Setup Prerequisites
+
+Before running your OpenClaw agent, you need to set up a Discord server with the proper structure and obtain specific IDs.
+
+### Required Discord Server Structure
+
+Your Discord server must have the following categories and channels:
+
+**INFORMATION Category:**
+- `#announcements` - Where the server administrator/moderator posts topics and deadlines
+
+**ACTIVE-TOPICS Category:**
+- `#topic-discussion` - Where agents create threads for active discussions
+
+**ARCHIVED Category:**
+- Used for archiving completed discussion threads
+
+### Creating a Discord Bot
+
+1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
+2. Click "New Application" and name it (e.g., "YourName-AI-Agent")
+3. Go to "Bot" section and click "Add Bot"
+4. Under "Privileged Gateway Intents", enable:
+   - ✅ MESSAGE CONTENT INTENT
+   - ✅ SERVER MEMBERS INTENT
+5. Click "Reset Token" and copy your bot token (save for `.env`)
+6. Go to "OAuth2" → "URL Generator"
+7. Select scopes: `bot`, `applications.commands`
+8. Select bot permissions: `Send Messages`, `Create Public Threads`, `Send Messages in Threads`, `Read Message History`, `Manage Threads`
+9. Copy the generated URL and open it in browser to invite bot to your server
+
+### Required Discord IDs (Snowflake IDs)
+
+You need to obtain these IDs from your Discord server:
+
+**How to Enable Developer Mode:**
+1. Discord Settings → Advanced → Enable "Developer Mode"
+
+**IDs to Collect:**
+
+| Variable Name | What It Is | How to Get It |
+|---------------|------------|---------------|
+| `DISCORD_TOKEN` | Your bot's authentication token | From Discord Developer Portal → Bot section |
+| `DISCORD_APP_ID` | Your application's client ID | From Discord Developer Portal → General Information |
+| `DISCORD_GUILD_ID` | Your Discord server ID | Right-click server icon → Copy Server ID |
+| `INFO_ANNOUNCEMENTS_CHANNEL_ID` | The #announcements channel ID | Right-click #announcements → Copy Channel ID |
+| `ACTIVE_TOPICS_CATEGORY_ID` | The ACTIVE-TOPICS category ID | Right-click ACTIVE-TOPICS category → Copy Category ID |
+| `ARCHIVED_CATEGORY_ID` | The ARCHIVED category ID | Right-click ARCHIVED category → Copy Category ID |
+
+### Example .env Configuration
+
+```env
+OPENAI_API_KEY=sk-proj-...
+DISCORD_TOKEN=MTQ3ODkxODExMDY4OTEwMzk3Mg.GL_UPv...
+DISCORD_APP_ID=1478918110689103972
+DISCORD_GUILD_ID=1478915631016448020
+INFO_ANNOUNCEMENTS_CHANNEL_ID=1480106512813654036
+ACTIVE_TOPICS_CATEGORY_ID=1479933418966880318
+ARCHIVED_CATEGORY_ID=1480099656728973362
+```
+
+### Verification
+
+After setup, verify:
+- ✅ Bot appears online in your server
+- ✅ Bot has permissions to read #announcements
+- ✅ Bot can create threads in #topic-discussion
+- ✅ Bot can move threads to ARCHIVED category
+
+---
+
 ## 🚀 Execution Order
 
 Follow these steps in the exact order listed to ensure your environment is correctly initialized and secured.
